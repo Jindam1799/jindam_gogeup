@@ -30,6 +30,9 @@ chrome='''<script>
   var ua=navigator.userAgent;
   var android=/Android/i.test(ua),ios=/iPhone|iPad|iPod/i.test(ua)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
   var isChrome=ios?/CriOS/.test(ua):(/Chrome\\//.test(ua)&&!/; wv\\)|SamsungBrowser|EdgA|OPR|Whale|KAKAOTALK|NAVER|DaumApps|Instagram|FBAN|FBAV|Line\\//i.test(ua));
+  // 홈 화면에 추가한 웹앱으로 실행 중이면 아무것도 하지 않음 (이동·안내 띠 모두 없음)
+  var standalone=(window.matchMedia&&(matchMedia('(display-mode: standalone)').matches||matchMedia('(display-mode: fullscreen)').matches||matchMedia('(display-mode: minimal-ui)').matches))||navigator.standalone===true||/^android-app:/.test(document.referrer);
+  if(standalone)return;
   if(isChrome||!(android||ios))return;
   var NO='dtuk_no_chrome';
   var u=new URL(location.href);
