@@ -352,9 +352,9 @@ select{font:inherit;font-size:17px;font-weight:800;padding:10px 12px;border-radi
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 
 /* ===== 밝은 스킨: 흰 바탕 · 파스텔 · 진한 덩어리 제거 (남녀노소 친화) ===== */
-:root{--bg:#FFFAF7;--surface2:#FFF4EF;--line:#F0E3DC;--ink:#2B3256;--muted:#6B7090;--act:#5B6BE0;--act2:#4A59C9;--act-soft:#ECEEFC;--hero1:#FFE9E3;--hero2:#EDEBFF;--seal:#F2766B;--seal-soft:#FDE7E4;--sun:#FFB45C;--surface:#FFFFFF;}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#14162A;--surface2:#232745;--line:#353A5E;--ink:#ECEEF7;--muted:#A9AFC8;--act:#8C98FF;--act2:#7683F0;--act-soft:#262B55;--hero1:#3A2430;--hero2:#262B55;--seal:#F2766B;--seal-soft:#FDE7E4;--sun:#FFB45C;--surface:#1D2039;}}
-:root[data-theme="dark"]{--bg:#14162A;--surface2:#232745;--line:#353A5E;--ink:#ECEEF7;--muted:#A9AFC8;--act:#8C98FF;--act2:#7683F0;--act-soft:#262B55;--hero1:#3A2430;--hero2:#262B55;--seal:#F2766B;--seal-soft:#FDE7E4;--sun:#FFB45C;--surface:#1D2039;}
+:root{--bg:#FFFBF8;--surface2:#FAF6FF;--line:#ECE4F3;--ink:#2A2740;--muted:#6C6880;--act:#FF8A65;--act2:#E9704B;--act-soft:#FFEDE5;--hero1:#EEE8FF;--hero2:#FFEADF;--seal:#8B6CF0;--seal-soft:#EEE8FF;--sun:#FFC266;--surface:#FFFFFF;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#16141F;--surface2:#272338;--line:#3A3550;--ink:#F0EEF8;--muted:#B1ACC8;--act:#FF9A78;--act2:#F08260;--act-soft:#3A2620;--hero1:#2C2550;--hero2:#3A2620;--seal:#A68DFF;--seal-soft:#2C2550;--sun:#FFC266;--surface:#201D2D;}}
+:root[data-theme="dark"]{--bg:#16141F;--surface2:#272338;--line:#3A3550;--ink:#F0EEF8;--muted:#B1ACC8;--act:#FF9A78;--act2:#F08260;--act-soft:#3A2620;--hero1:#2C2550;--hero2:#3A2620;--seal:#A68DFF;--seal-soft:#2C2550;--sun:#FFC266;--surface:#201D2D;}
 body{background:var(--bg)}
 .hero2{background:linear-gradient(120deg,var(--hero1),var(--hero2));color:var(--ink);border:1.5px solid var(--line)}
 .hero2 p{opacity:1;color:var(--muted)} .hero2 b{color:var(--ink)} .hero2 b::first-letter{color:inherit}
@@ -374,6 +374,8 @@ body{background:var(--bg)}
 .qcard{box-shadow:0 4px 18px color-mix(in srgb,var(--ink) 6%,transparent)}
 .tile{box-shadow:0 3px 0 var(--line)}
 .pill{box-shadow:0 1px 0 var(--line)}
+.gchips span{background:var(--seal-soft);color:var(--seal)}
+.lhead .k{color:var(--seal)}
 /* 단계별 색 (1 민트 · 2 하늘 · 3 살구 · 4 라벤더) */
 .stepbtn[data-s="0"] .n{background:#DDF4EA;color:#1C9A70}.stepbtn[data-s="1"] .n{background:#DDEEFD;color:#2A7BD0}
 .stepbtn[data-s="2"] .n{background:#FFE9DC;color:#E06A35}.stepbtn[data-s="3"] .n{background:#ECE6FD;color:#7353D6}
