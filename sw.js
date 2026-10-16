@@ -1,5 +1,5 @@
-// 덩어리 툭! 오프라인 캐시 (버전 a76485ed)
-const CACHE='dtuk-adv-a76485ed';
+// 덩어리 툭! 오프라인 캐시 (버전 9b96620d)
+const CACHE='dtuk-adv-9b96620d';
 const FILES=['./','./index.html','./manifest.webmanifest','./icons/icon-192.png','./icons/icon-512.png','./icons/icon-maskable-512.png','./icons/apple-touch-icon.png','./icons/favicon-64.png'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(FILES)).then(()=>self.skipWaiting()))});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});

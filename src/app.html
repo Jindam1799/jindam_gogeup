@@ -544,7 +544,7 @@ function quiz(n,stepIdx,items,cfg){
       combo++;stat[idx]=wrongOnce.has(idx)?'fix':'ok';paintSeg(idx);
       let g=10+Math.min(combo,5)*2;const fast=el<limit*.35;if(fast){g+=5;burst('툭!')}
       if(!wrongOnce.has(idx))first.add(idx);
-      gain+=g;fb.className='fb ok';fb.textContent=(fast?U().fast:U().ok)+`+${g}`;
+      gain+=g;fb.className='fb ok';fb.textContent=(fast?U().fast:U().ok).trim();
       const myPos=pos,myRound=round;
       speak(it.sayAfter,{end:()=>{setTimeout(()=>{if(!alive||pos!==myPos||round!==myRound)return;pos++;draw()},450)}});
     }else{
