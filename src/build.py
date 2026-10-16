@@ -18,6 +18,35 @@ pwa='''<link rel="manifest" href="manifest.webmanifest">
 reg='''<script>
 if('serviceWorker' in navigator && location.protocol==='https:'){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})})}
 </script>'''
+chrome='''<script>
+/* 크롬으로 열기: 카톡·네이버·인스타 등 앱 안 브라우저 → 크롬 */
+(function(){
+  if(location.protocol!=='https:')return;
+  var ua=navigator.userAgent,url=location.href.split('#')[0];
+  var android=/Android/i.test(ua),ios=/iPhone|iPad|iPod/i.test(ua)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+  var inApp=/KAKAOTALK|NAVER|Instagram|FBAN|FBAV|Line\\/|DaumApps|everytimeApp|Whale\\/.*wv|; wv\\)|BAND\\//i.test(ua);
+  var isChrome=ios?/CriOS/.test(ua):(/Chrome\\//.test(ua)&&!/; wv\\)|SamsungBrowser|EdgA|OPR|Whale|KAKAOTALK|NAVER|DaumApps/i.test(ua));
+  if(isChrome||!(android||ios))return;
+  var noPrefix=url.replace(/^https:\\/\\//,'');
+  var androidIntent='intent://'+noPrefix+'#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url='+encodeURIComponent(url)+';end';
+  function openChrome(){
+    if(android){location.href=androidIntent}
+    else if(ios){location.href='googlechromes://'+noPrefix;setTimeout(function(){if(!document.hidden&&/KAKAOTALK/i.test(ua))location.href='kakaotalk://web/openExternal?url='+encodeURIComponent(url)},1500)}
+  }
+  var tried=false;try{tried=sessionStorage.getItem('dtukChromeTried')==='1';sessionStorage.setItem('dtukChromeTried','1')}catch(e){}
+  if(inApp&&!tried){setTimeout(openChrome,300)}
+  function banner(){
+    if(document.getElementById('gochrome'))return;
+    var d=document.createElement('div');d.id='gochrome';
+    d.style.cssText='position:fixed;left:0;right:0;bottom:0;z-index:9999;padding:12px max(16px,env(safe-area-inset-right,0px)) calc(12px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));background:#2E3A63;color:#fff;font:600 15px/1.4 system-ui,sans-serif;display:flex;gap:8px;align-items:center;box-shadow:0 -6px 20px rgba(0,0,0,.2)';
+    d.innerHTML='<span style="flex:1">크롬에서 열면 소리와 화면이 가장 잘 나와요.</span><button id="gcgo" style="border:0;border-radius:12px;padding:10px 14px;background:#DE5F57;color:#fff;font:800 15px system-ui,sans-serif">크롬으로 열기</button><button id="gcx" aria-label="닫기" style="border:0;background:none;color:#fff;font-size:20px;padding:4px 6px">✕</button>';
+    document.body.appendChild(d);
+    document.getElementById('gcgo').onclick=openChrome;
+    document.getElementById('gcx').onclick=function(){d.remove()};
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',banner);else banner();
+})();
+</script>'''
 def page(with_pwa):
   return f'''<!doctype html>
 <html lang="ko">
@@ -32,6 +61,7 @@ def page(with_pwa):
 </head>
 <body>{body}
 {reg if with_pwa else ''}
+{chrome if with_pwa else ''}
 </body>
 </html>
 '''
