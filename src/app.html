@@ -304,6 +304,7 @@ select{font:inherit;font-size:17px;font-weight:800;padding:10px 12px;border-radi
 @media (max-height:720px){.lcard .tt{font-size:13.5px}.lcard .no{font-size:20px!important}}
 /* 소개 팝업: 단어장 안내 · 문의 */
 .ivoc{margin:0;width:100%;padding:9px 12px;border-radius:14px;background:var(--surface2);border:1px solid var(--line);font-size:15px;line-height:1.5;text-align:left}
+.cmsg{margin:0;font-size:13.5px;line-height:1.45;color:var(--ink);text-align:center;word-break:keep-all}
 .contact{width:100%;display:grid;gap:8px;padding:10px 12px;border-radius:16px;border:1.5px dashed var(--line)}
 .cids{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:2px 10px;font-size:15px}
 .cids b{font-family:var(--f-py);font-size:16px;user-select:all;-webkit-user-select:all}
@@ -311,6 +312,12 @@ select{font:inherit;font-size:17px;font-weight:800;padding:10px 12px;border-radi
 .btn.kakao{min-height:48px;font-size:16px;background:#FEE500;border-color:#FEE500;color:#191600;text-decoration:none}
 .gcontact{margin-top:6px;font-size:14px;color:var(--muted)}
 .gcontact b{color:var(--ink);font-family:var(--f-py)}
+/* 문의 문구 들어간 뒤 압축 */
+.gcontact{font-size:13px;line-height:1.45}
+.gpage .gdot{gap:6px}.gpage .gdot li{padding:7px 10px;font-size:15px;line-height:1.4}
+@media (max-height:900px){.gnote{font-size:13px;line-height:1.45}.gsig{padding:8px 10px}}
+@media (max-height:760px){.itag{display:none}.ibook{font-size:13px}.ivoc{font-size:13.5px;padding:6px 9px}.cmsg{font-size:13px}.gpage .gdot li{padding:5px 9px;font-size:14px}.guide h3{margin:0}.gtabs button{min-height:36px}}
+@media (max-height:660px){.isteps li{padding:5px 3px}.contact{gap:4px;padding:7px 9px}.btn.kakao{min-height:40px}.gnote{font-size:12.5px}}
 /* 선생님께 */
 .doc{background:var(--surface);border:1.5px solid var(--line);border-radius:20px;padding:20px;user-select:text;-webkit-user-select:text}
 .doc h2{margin:0 0 8px;font-size:22px;line-height:1.35}
@@ -748,6 +755,7 @@ ko:{start:'시작하기 ▶',guide:'수업 안내',back:'← 소개로',close:'�
   tag:'배운 중국어가 <em>1초 안에 툭!</em>',
   steps:['짝꿍어휘','입에 붙이기','내 문장','즉시반응'],
   voc:'<b>📖 단어장</b> 게임 중 언제든 위쪽 📖를 누르면 교재 단어 · 관용 표현 · 짝꿍어휘를 볼 수 있어요.',
+  msg:'프로그램 관련해서 문제(또는 의견)이 있으시다면 언제든 편하게 문의주세요^0^ 협업 및 출강 문의도 받습니다💛',
   ask:'문의',kakao:'카카오톡',wechat:'위챗',chat:'💬 카카오톡 채팅으로 문의하기',
   book:'중중빠 중국어 회화(중·고급) · 1~4과 (5~10과 업데이트 예정)'},
 zh:{start:'开始 ▶',guide:'课程说明',back:'← 返回',close:'关闭',
@@ -755,6 +763,7 @@ zh:{start:'开始 ▶',guide:'课程说明',back:'← 返回',close:'关闭',
   tag:'学过的中文，<em>一秒说出来！</em>',
   steps:['搭配词','说顺口','我的句子','即时反应'],
   voc:'<b>📖 词汇表</b> 游戏中随时点上方 📖，查看教材生词、惯用语和搭配词。',
+  msg:'如果对程序有任何问题或意见，欢迎随时联系我们^0^ 也欢迎合作及讲课邀请💛',
   ask:'咨询',kakao:'KakaoTalk',wechat:'微信',chat:'💬 KakaoTalk 在线咨询',
   book:'汉语自由会话(中级) · 第1–4课 (第5–10课即将更新)'}};
 const GUIDE={
@@ -782,7 +791,7 @@ zh:{tabs:['四个步骤','课堂模式','注意事项'],
     sig:'<span class="nw"><b>진담중국어 전진아老师</b></span>'}}};
 let guidePage=0;
 const KAKAO_URL='https://pf.kakao.com/_jZYxmxj';
-function contactBox(t){return `<div class="contact"><div class="cids"><span class="clab">${t.ask}</span><span>${t.kakao} ID <b>jindam1799</b></span><span>${t.wechat} ID <b>jindam1799</b></span></div>
+function contactBox(t){return `<div class="contact"><p class="cmsg">${t.msg}</p><div class="cids"><span class="clab">${t.ask}</span><span>${t.kakao} ID <b>jindam1799</b></span><span>${t.wechat} ID <b>jindam1799</b></span></div>
   <a class="btn kakao" href="${KAKAO_URL}" target="_blank" rel="noopener">${t.chat}</a></div>`}
 function openModal(view){
   guidePage=0;
@@ -809,7 +818,7 @@ function openModal(view){
       const pg=guidePage;
       const inner=pg===0?`<p class="glead">${g.p1.lead}</p><div class="gsteps">${g.p1.steps.map((x,i)=>`<div><span class="gn">${i+1}</span><b>${x[0]}</b><p>${x[1]}</p></div>`).join('')}</div>`
         :pg===1?`<h3>${g.p2.h}</h3><ol class="gnum">${g.p2.list.map((x,i)=>`<li><span>${i+1}</span><p>${x}</p></li>`).join('')}</ol><h3>${g.p2.h2}</h3><div class="guse">${g.p2.use.map(x=>`<div><b>${x[0]}</b><span>${x[1]}</span></div>`).join('')}</div>`
-        :`<h3>${g.p3.h}</h3><ul class="gdot">${g.p3.list.map(x=>`<li>${x}</li>`).join('')}</ul><p class="gnote">${g.p3.note}</p><div class="gsig">${g.p3.sig}<div class="gcontact">${T[LANG].ask} · ${T[LANG].kakao} ID <b>jindam1799</b> · ${T[LANG].wechat} ID <b>jindam1799</b></div></div>`;
+        :`<h3>${g.p3.h}</h3><ul class="gdot">${g.p3.list.map(x=>`<li>${x}</li>`).join('')}</ul><p class="gnote">${g.p3.note}</p><div class="gsig">${g.p3.sig}<div class="gcontact">${T[LANG].msg}<br>${T[LANG].ask} · ${T[LANG].kakao} ID <b>jindam1799</b> · ${T[LANG].wechat} ID <b>jindam1799</b></div></div>`;
       body=`<div class="guide" lang="${LANG==='zh'?'zh-CN':'ko'}"><div class="gtabs" role="tablist">${g.tabs.map((x,i)=>`<button role="tab" data-gp="${i}" aria-selected="${i===pg}">${x}</button>`).join('')}</div><div class="gpage">${inner}</div></div>`;
       const last=guidePage===2;
       foot=`<div class="sheet-f">${last?`<button class="btn" data-gp="0">${LANG==='zh'?'← 第一页':'← 처음으로'}</button>`:`<button class="btn" id="mstart">${m.dataset.fromIntro?t.start:t.close}</button>`}<button class="btn primary" ${last?'id="mstart"':`data-gp="${guidePage+1}"`}>${last?(m.dataset.fromIntro?t.start:t.close):(LANG==='zh'?'下一页 ▶':'다음 ▶')}</button></div>`;
