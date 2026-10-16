@@ -350,6 +350,37 @@ select{font:inherit;font-size:17px;font-weight:800;padding:10px 12px;border-radi
 }
 @media (max-width:370px){.lcard .no{font-size:24px}.lcard .tt{font-size:12px}.opt{font-size:23px}.btn{font-size:17px}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ===== 밝은 스킨: 흰 바탕 · 파스텔 · 진한 덩어리 제거 (남녀노소 친화) ===== */
+:root{--bg:#FFFAF7;--surface2:#FFF4EF;--line:#F0E3DC;--ink:#2B3256;--muted:#6B7090;--act:#5B6BE0;--act2:#4A59C9;--act-soft:#ECEEFC;--hero1:#FFE9E3;--hero2:#EDEBFF;--seal:#F2766B;--seal-soft:#FDE7E4;--sun:#FFB45C;--surface:#FFFFFF;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#14162A;--surface2:#232745;--line:#353A5E;--ink:#ECEEF7;--muted:#A9AFC8;--act:#8C98FF;--act2:#7683F0;--act-soft:#262B55;--hero1:#3A2430;--hero2:#262B55;--seal:#F2766B;--seal-soft:#FDE7E4;--sun:#FFB45C;--surface:#1D2039;}}
+:root[data-theme="dark"]{--bg:#14162A;--surface2:#232745;--line:#353A5E;--ink:#ECEEF7;--muted:#A9AFC8;--act:#8C98FF;--act2:#7683F0;--act-soft:#262B55;--hero1:#3A2430;--hero2:#262B55;--seal:#F2766B;--seal-soft:#FDE7E4;--sun:#FFB45C;--surface:#1D2039;}
+body{background:var(--bg)}
+.hero2{background:linear-gradient(120deg,var(--hero1),var(--hero2));color:var(--ink);border:1.5px solid var(--line)}
+.hero2 p{opacity:1;color:var(--muted)} .hero2 b{color:var(--ink)} .hero2 b::first-letter{color:inherit}
+.hero2 .hseal{background:var(--surface);border-color:var(--seal);color:var(--seal)}
+.btn{border-radius:18px;box-shadow:0 2px 0 var(--line)}
+.btn.dark{background:var(--act);border-color:var(--act);color:#fff;box-shadow:0 3px 0 var(--act2)}
+.btn.primary{box-shadow:0 3px 0 color-mix(in srgb,var(--seal) 75%,#000)}
+.btn:active{transform:translateY(2px);box-shadow:none}
+.seg button[aria-pressed="true"],.gtabs button[aria-selected="true"],.pill.tg[aria-pressed="true"]{background:var(--act);color:#fff;border-color:var(--act)}
+.stepbtn{box-shadow:0 2px 0 var(--line)}
+.stepbtn .n{background:var(--act-soft);color:var(--act)}
+.stepbtn.done .n{background:var(--act);color:#fff}
+.ans .tile{background:var(--act);border-color:var(--act);color:#fff}
+.gnum li span{background:var(--act-soft);color:var(--act)}
+.lcard{box-shadow:0 2px 0 var(--line)}
+.opt{box-shadow:0 2px 0 var(--line)}
+.qcard{box-shadow:0 4px 18px color-mix(in srgb,var(--ink) 6%,transparent)}
+.tile{box-shadow:0 3px 0 var(--line)}
+.pill{box-shadow:0 1px 0 var(--line)}
+/* 단계별 색 (1 민트 · 2 하늘 · 3 살구 · 4 라벤더) */
+.stepbtn[data-s="0"] .n{background:#DDF4EA;color:#1C9A70}.stepbtn[data-s="1"] .n{background:#DDEEFD;color:#2A7BD0}
+.stepbtn[data-s="2"] .n{background:#FFE9DC;color:#E06A35}.stepbtn[data-s="3"] .n{background:#ECE6FD;color:#7353D6}
+.stepbtn.done .n{background:var(--act);color:#fff}
+.isteps li:nth-child(1){background:#DDF4EA}.isteps li:nth-child(2){background:#DDEEFD}.isteps li:nth-child(3){background:#FFE9DC}.isteps li:nth-child(4){background:#ECE6FD}
+.isteps li:nth-child(1) span{background:#1C9A70}.isteps li:nth-child(2) span{background:#2A7BD0}.isteps li:nth-child(3) span{background:#E06A35}.isteps li:nth-child(4) span{background:#7353D6}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .stepbtn:not(.done) .n,:root:not([data-theme="light"]) .isteps li{filter:brightness(.55) saturate(1.2)}}
 </style>
 </head>
 <body>
