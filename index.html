@@ -5,12 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <meta name="theme-color" content="#2E3A63">
 <title>덩어리 툭 고급회화</title>
-<link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" type="image/png" href="icons/favicon-64.png">
-<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="툭! 고급회화">
+
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}[hidden]{display:none!important}</style>
 <style>
 /* 레이아웃: 한 화면 고정 앱(페이지 스크롤·확대 없음), 큰 글씨·큰 버튼(성인 학습자용). 수업 모드는 프로젝터용 와이드. 외부 리소스 0 */
@@ -111,7 +106,7 @@ button:focus-visible,select:focus-visible{outline:3px solid var(--sun);outline-o
 .playtop{display:flex;align-items:center;gap:12px;flex:none}
 .prog{flex:1;height:12px;border-radius:6px;background:var(--line);overflow:hidden}
 .prog i{display:block;height:100%;background:var(--jade);border-radius:6px;transition:width .3s}
-.combo{font-weight:900;font-size:17px;color:var(--seal);min-width:64px;text-align:right;font-variant-numeric:tabular-nums}
+.combo{font-weight:900;font-size:17px;color:var(--seal);min-width:0;text-align:right;font-variant-numeric:tabular-nums}
 .timer{height:10px;border-radius:5px;background:var(--line);overflow:hidden;flex:none}
 .timer i{display:block;height:100%;width:100%;background:var(--sun);transform-origin:left}
 .qcard{flex:none;background:var(--surface);border:1.5px solid var(--line);border-radius:22px;padding:12px 16px 18px;text-align:center;position:relative}
@@ -288,6 +283,14 @@ select{font:inherit;font-size:17px;font-weight:800;padding:10px 12px;border-radi
 .vnote.warn{padding:10px 12px;border-radius:12px;background:var(--seal-soft);color:var(--ink)}
 .vt{font-size:19px}
 .gtabs small{font-weight:700;opacity:.7}
+/* 칸 진행 막대 */
+.segs{flex:1;display:flex;gap:4px;min-width:0}
+.segs span{flex:1;height:14px;border-radius:7px;background:var(--line);transition:background .25s}
+.segs span.ok{background:var(--jade)}
+.segs span.fix{background:var(--jade);opacity:.55}
+.segs span.no{background:var(--bad)}
+.segs span.cur{box-shadow:0 0 0 2px var(--ink)}
+.redo{display:inline-block;padding:3px 8px;border-radius:8px;background:var(--bad-soft);color:var(--bad);font-size:14px;white-space:nowrap}
 /* 고급회화: 과 카드 2열 + 교재 색 */
 .grid{grid-template-columns:repeat(2,1fr)!important}
 .lcard{text-align:left!important;align-items:flex-start!important;padding:8px 12px 8px 16px!important;border-left:6px solid var(--lc,var(--line))!important}
@@ -401,7 +404,7 @@ ko:{steps:['짝꿍어휘','입에 붙이기','내 문장','즉시반응'],
   desc:['함께 쓰는 말을 덩어리로 맞히기','듣고 → 보고 → 가리고 세 번 말하기','문장을 맞추고 내 이야기로 말하기','질문을 듣고 바로 대답하기'],
   unit:'과',lessonK:n=>`第 ${n} 课`,hero:'진담중국어 전진아 선생님이 만든',teach:'📺 수업 모드',about:'수업 안내',langBtn:'中文',
   again3:'즉시반응 다시 ▶',startStep:i=>`${i}단계 시작 ▶`,combo:c=>`${c} 연속!`,
-  fast:'툭! 바로 나왔어요 ',ok:'정답! ',timeUp:'시간이 지났어요. 듣고 따라 말해 보세요.',wrong:'아쉬워요. 듣고 따라 말해 보세요.',nextW:'따라 말했어요 · 다음 ▶',
+  fast:'툭! 바로 나왔어요 ',ok:'정답! ',timeUp:'시간이 지났어요.',wrong:'아쉬워요.',again:'정답을 듣고 따라 말해 보세요. 이 문제는 끝에 다시 나와요.',redo:'다시 풀기',nextW:'따라 말했어요 · 다음 ▶',
   lab1:'① 짝꿍어휘 · 빈칸 채우기',lab4:'④ 즉시반응 · 듣고 바로 대답',lab2:r=>`② 입에 붙이기 · ${r}번째`,
   rep:['듣고 따라 말하기','한자만 보고 말하기','뜻만 보고 말하기'],
   repHint:['소리를 듣고 그대로 따라 말해 보세요.','병음을 가렸어요. 한자를 보며 소리 내어 말해요.','중국어를 가렸어요. 뜻만 보고 먼저 말한 뒤 확인해요.'],
@@ -420,7 +423,7 @@ zh:{steps:['搭配词','说顺口','我的句子','即时反应'],
   desc:['看意思，选出搭配的词','跟读 → 看汉字 → 只看意思，说三遍','排好句子，再说自己的句子','听问题，马上选出回答'],
   unit:'课',lessonK:n=>`第 ${n} 课`,hero:'진담중국어 전진아老师制作',teach:'📺 课堂模式',about:'课程说明',langBtn:'한글',
   again3:'再练即时反应 ▶',startStep:i=>`开始第${i}步 ▶`,combo:c=>`${c}连对！`,
-  fast:'툭！一秒说出来 ',ok:'答对了！',timeUp:'时间到了。听一听，跟着说。',wrong:'差一点！听一听，跟着说。',nextW:'跟读了 · 下一个 ▶',
+  fast:'툭！一秒说出来 ',ok:'答对了！',timeUp:'时间到了。',wrong:'差一点！',again:'听答案跟着说，这道题最后会再出现。',redo:'再做一次',nextW:'跟读了 · 下一个 ▶',
   lab1:'① 搭配词 · 填空',lab4:'④ 即时反应 · 听了马上回答',lab2:r=>`② 说顺口 · 第${r}遍`,
   rep:['听了跟读','只看汉字说','只看意思说'],
   repHint:['听声音，跟着说。','拼音隐藏了，看汉字大声说。','中文隐藏了，看意思先说，再确认答案。'],
@@ -501,9 +504,10 @@ function topbar(back){
 }
 function bindBack(fn){const b=document.getElementById('bk');if(b)b.onclick=()=>go(fn)}
 document.addEventListener('click',e=>{if(e.target.closest('[data-voc]')){openVocab();return}if(e.target.closest('#lng')&&reRender){setLang(LANG==='ko'?'zh':'ko');const f=reRender;f();return}const b=e.target.closest('#snd');if(!b)return;S.sound=!S.sound;save();if(!S.sound)stopSpeak();b.textContent=S.sound?'🔊':'🔇'});
-function playtop(label,width){
+function segBar(st,cur){return `<div class="segs">${st.map((x,i)=>`<span class="${x}${i===cur?' cur':''}"></span>`).join('')}</div>`}
+function playtop(label,width,segs){
   return `<div class="playtop"><button class="back" id="bk" aria-label="그만하기">✕</button>
-    <div class="prog"><i style="width:${width}%"></i></div><span class="combo">${label}</span><button class="pill snd vbtn" data-voc="1" aria-label="단어장">📖</button></div>`;
+    ${segs||`<div class="prog"><i style="width:${width}%"></i></div>`}<span class="combo">${label}</span><button class="pill snd vbtn" data-voc="1" aria-label="단어장">📖</button></div>`;
 }
 // ---------- HOME ----------
 function stepsDone(n){return [0,1,2,3].map(i=>(S.best[n+'-'+i]||0)>=80)}
@@ -544,13 +548,19 @@ function nextLabel(n){const i=[0,1,2,3].find(i=>(S.best[n+'-'+i]||0)<80);return 
 function startStep(n,i){curLesson=n;go([pairs,repeat,build,react][i],n)}
 // ---------- 공통: 퀴즈 엔진 (1·4단계) ----------
 function quiz(n,stepIdx,items,cfg){
-  let queue=shuffle(items.map((_,i)=>i)),pos=0,first=new Set(),wrongOnce=new Set(),combo=0,maxCombo=0,gain=0,timerRAF=0,locked=false,alive=true;
-  const total=items.length;
+  // 1바퀴: 전체 문제를 한 번씩 → 틀린 문제만 모아 「다시 풀기」 (모두 맞힐 때까지)
+  let queue=shuffle(items.map((_,i)=>i)),pos=0,round=1,miss=[],first=new Set(),wrongOnce=new Set(),combo=0,gain=0,timerRAF=0,locked=false,alive=true;
+  const total=items.length,stat=items.map(()=>''),order=queue.slice();
+  const segs=cur=>segBar(order.map(i=>stat[i]),order.indexOf(cur));
   const limit=cfg.sec*1000;
   function draw(){
-    if(pos>=queue.length)return finish();
-    locked=false;const it=items[queue[pos]];
-    $app.innerHTML=playtop(combo>1?U().combo(combo):'',Math.min(100,pos/queue.length*100))+`
+    if(pos>=queue.length){
+      if(!miss.length)return finish();
+      queue=shuffle(miss);miss=[];pos=0;round++;
+    }
+    locked=false;const idx=queue[pos],it=items[idx];
+    const label=round>1?`<span class="redo">${U().redo} ${pos+1}/${queue.length}</span>`:(combo>1?U().combo(combo):'');
+    $app.innerHTML=playtop(label,0,segs(idx))+`
       <div class="timer"><i id="tm"></i></div>
       <div class="fill">${it.render()}<div class="fb" id="fb"></div>
       <div class="opts ${cfg.one?'one':''}" id="opts">${it.options.map((o,k)=>`<button class="opt" data-k="${k}">${esc(o)}</button>`).join('')}</div>
@@ -558,6 +568,7 @@ function quiz(n,stepIdx,items,cfg){
     document.getElementById('bk').onclick=()=>go(lesson,n);
     const sb=document.getElementById('say');if(sb)sb.onclick=()=>speak(it.sayQ||it.sayAfter);
     $app.querySelectorAll('.opt').forEach(b=>b.onclick=()=>choose(+b.dataset.k));
+    if(location.hash==='#qa')window.__qa={ans:it.answer,idx};
     if(it.sayQ)setTimeout(()=>{if(alive)speak(it.sayQ)},250);
     let t0=performance.now(),lastF=t0;const bar=document.getElementById('tm');
     const tick=now=>{if(document.getElementById('voc')||document.getElementById('modal'))t0+=now-lastF;lastF=now;it._t0=t0;const r=1-(now-t0)/limit;bar.style.transform=`scaleX(${Math.max(0,r)})`;
@@ -565,6 +576,7 @@ function quiz(n,stepIdx,items,cfg){
     timerRAF=requestAnimationFrame(tick);
     it._t0=t0;
   }
+  function paintSeg(idx){const sp=$app.querySelectorAll('.segs span')[order.indexOf(idx)];if(sp){sp.className=stat[idx]+' cur'}}
   function choose(k){
     if(locked)return;locked=true;cancelAnimationFrame(timerRAF);
     const idx=queue[pos],it=items[idx],ok=k===it.answer;const el=performance.now()-it._t0;
@@ -573,17 +585,16 @@ function quiz(n,stepIdx,items,cfg){
     const fb=document.getElementById('fb');
     const rev=document.getElementById('reveal');if(rev)rev.hidden=false;const u=$app.querySelector('.qcard .big u');if(u&&it.key)u.textContent=it.key;
     if(ok){
-      combo++;maxCombo=Math.max(maxCombo,combo);
+      combo++;stat[idx]=wrongOnce.has(idx)?'fix':'ok';paintSeg(idx);
       let g=10+Math.min(combo,5)*2;const fast=el<limit*.35;if(fast){g+=5;burst('툭!')}
       if(!wrongOnce.has(idx))first.add(idx);
       gain+=g;fb.className='fb ok';fb.textContent=(fast?U().fast:U().ok)+`+${g}`;
-      const myPos=pos;
-      speak(it.sayAfter,{end:()=>{setTimeout(()=>{if(!alive||pos!==myPos)return;pos++;draw()},450)}});
+      const myPos=pos,myRound=round;
+      speak(it.sayAfter,{end:()=>{setTimeout(()=>{if(!alive||pos!==myPos||round!==myRound)return;pos++;draw()},450)}});
     }else{
       combo=0;if(k>=0)bs[k].classList.add('no');
-      wrongOnce.add(idx);
-      queue.splice(Math.min(pos+3,queue.length),0,idx); // 오답 우선 반복
-      fb.className='fb no';fb.textContent=k<0?U().timeUp:U().wrong;
+      wrongOnce.add(idx);miss.push(idx);stat[idx]='no';paintSeg(idx);
+      fb.className='fb no';fb.textContent=(k<0?U().timeUp:U().wrong)+' '+U().again;
       $app.querySelector('.qcard').classList.add('shake');
       speak(it.sayAfter);
       document.getElementById('after').innerHTML='<button class="btn dark" id="nx" style="width:100%">'+U().nextW+'</button>';
@@ -593,7 +604,7 @@ function quiz(n,stepIdx,items,cfg){
   function finish(){
     const pct=Math.round(first.size/total*100);
     const bonus=pct===100?30:0;
-    reward(n,stepIdx,pct,gain+bonus,{combo:maxCombo,bonus,wrong:[...wrongOnce].map(i=>items[i].review)});
+    reward(n,stepIdx,pct,gain+bonus,{combo:0,bonus,wrong:[...wrongOnce].map(i=>items[i].review)});
   }
   cleanup=()=>{alive=false;cancelAnimationFrame(timerRAF)};
   draw();
@@ -631,7 +642,7 @@ function repeat(n){
   function draw(){
     if(i>=list.length){return reward(n,1,100,list.length*6,{combo:0,bonus:0,wrong:[]})}
     const c=list[i];const hide=r===2;
-    $app.innerHTML=playtop(`${i+1}/${list.length}`,(i*3+r)/(list.length*3)*100)+`
+    $app.innerHTML=playtop(`${i+1}/${list.length}`,0,segBar(list.map((_,k)=>k<i?'ok':''),i))+`
       <div class="fill"><div class="qcard"><div class="lab">${U().lab2(r+1)}</div>
       <button class="say" id="say" aria-label="듣기">🔊</button>
       <div class="ko">${esc(c.ko)}</div>
@@ -661,7 +672,7 @@ function repeat(n){
 }
 // ---------- 3단계 내 문장 ----------
 function build(n){
-  const l=byN(n);const list=shuffle(l.s);let i=0,firstOk=0,gain=0,wrong=[],alive=true;
+  const l=byN(n);const list=shuffle(l.s);let i=0,firstOk=0,gain=0,wrong=[],alive=true;const bst=[];
   cleanup=()=>{alive=false};
   function draw(){
     if(i>=list.length)return mission(0);
@@ -669,7 +680,7 @@ function build(n){
     while(pool.map(p=>p.k).join()===s.tok.map((_,k)=>k).join()&&tries++<5)pool=shuffle(pool);
     let ans=[],missed=false,done=false;
     function paint(){
-      $app.innerHTML=playtop(`${i+1}/${list.length}`,i/(list.length+2)*100)+`
+      $app.innerHTML=playtop(`${i+1}/${list.length}`,0,segBar([...list.map((_,k)=>bst[k]||''),'',''],i))+`
       <div class="fill"><div class="qcard"><div class="lab">${U().lab3}</div><div class="ko">${esc(s.ko)}</div>
       <div class="pyl py" ${done?'':'hidden'}>${esc(s.py)}</div></div>
       <div class="ans ${done?'ok':''}" id="ans">${ans.map((p,j)=>`<button class="tile" data-a="${j}">${esc(p.t)}</button>`).join('')}</div>
@@ -689,8 +700,8 @@ function build(n){
     function check(){
       if(pool.length){paint();return}
       const ok=ans.map(p=>p.t).join('')===s.tok.join('');
-      if(ok){done=true;if(!missed){firstOk++;gain+=15;burst('툭!')}else gain+=8;paint();speak(s.tok.join(''));return}
-      missed=true;wrong.push(`${s.tok.join('')} · ${s.ko}`);paint();
+      if(ok){done=true;bst[i]=missed?'fix':'ok';if(!missed){firstOk++;gain+=15;burst('툭!')}else gain+=8;paint();speak(s.tok.join(''));return}
+      if(!missed)bst[i]='no';missed=true;wrong.push(`${s.tok.join('')} · ${s.ko}`);paint();
       const bad=ans.findIndex((p,j)=>p.t!==s.tok[j]);
       const a=document.getElementById('ans');a.classList.add('no','shake');
       const tiles=a.querySelectorAll('.tile');if(tiles[bad])tiles[bad].classList.add('hl');
@@ -701,7 +712,7 @@ function build(n){
   function mission(k){
     if(k>=l.m.length){const pct=Math.round(firstOk/list.length*100);return reward(n,2,pct,gain+(pct===100?30:0),{combo:0,bonus:pct===100?30:0,wrong})}
     const m=l.m[k];
-    $app.innerHTML=playtop(U().mission(k+1),(list.length+k)/(list.length+2)*100)+`
+    $app.innerHTML=playtop(U().mission(k+1),0,segBar([...list.map((_,j)=>bst[j]||''),...[0,1].map(j=>j<k?'ok':'')],list.length+k))+`
       <div class="fill"><div class="qcard mission"><div class="lab">${U().labM}</div>
       <div class="ko">${esc(m.ko)}</div><div class="frame">${esc(m.f)}</div>
       <div class="ex" id="ex" hidden><span class="zh" style="font-size:24px;font-weight:700">${esc(m.ex)}</span><br><span class="py">${esc(m.expy)}</span></div></div>
@@ -725,7 +736,6 @@ function reward(n,step,pct,xp,info){
     <h2>${passed?U().pass(n,U().steps[step]):U().fail}</h2>
     <p class="sub">${step===1?U().sub1:U().subP(pct)}</p>
     <div class="st4">${stepsDone(n).map((d,i)=>`<div class="${d?'on':''}"><span>${d?'툭':i+1}</span><small>${U().steps[i]}</small></div>`).join('')}</div>
-    ${info.combo>1?`<div class="lines"><div><span>${U().maxC}</span><b>${info.combo}</b></div></div>`:''}
     ${info.wrong.length?`<div class="wronglist"><div style="font-weight:900;color:var(--bad)">${U().wrongT}</div>${info.wrong.map(w=>`<div class="zh">${esc(w)}</div>`).join('')}</div>`:''}
   </div>
   <div class="foot"><button class="btn" id="again">${U().againB}</button>
@@ -925,8 +935,6 @@ setTimeout(()=>{if(document.querySelector('.lcard'))home()},1200); // 음성 목
 })();
 </script>
 
-<script>
-if('serviceWorker' in navigator && location.protocol==='https:'){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})})}
-</script>
+
 </body>
 </html>
