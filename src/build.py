@@ -1,6 +1,10 @@
 import re,os,json,hashlib
 app=open('app.html',encoding='utf-8').read()
 data=open('data.js',encoding='utf-8').read()
+import os,sys,json;sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)));from pron import build_map
+PRON=build_map(['data.js'])
+print('pron fixes',len(PRON))
+data+='\nconst PRON='+json.dumps(PRON,ensure_ascii=False)+';'
 art=app.replace('/*__DATA__*/',data)
 open('dist_artifact.html','w',encoding='utf-8').write(art)
 m=re.match(r'(<title>.*?</title>)\s*<meta name="claude:viewport-fit-sides" content="cover">\s*(<style>.*?</style>)(.*)',art,re.S)

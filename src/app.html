@@ -431,6 +431,8 @@ function speak(text,opt){
   if(!S.sound||!('speechSynthesis' in window)){opt.end&&setTimeout(opt.end,300);return}
   try{
     speechSynthesis.cancel();
+    // 다음자 보정: 화면은 그대로, 소리만 같은 발음 글자로 (예: 争分夺秒地 → 的)
+    if(typeof PRON!=='undefined'){const k=String(text).trim();text=PRON[k]||PRON[k.replace(/[。！？!?，,]$/,'')]||text}
     const u=new SpeechSynthesisUtterance(text);
     u.lang=VOICE?VOICE.lang:'zh-CN';if(VOICE)u.voice=VOICE;
     u.rate=opt.rate||.85;u.pitch=1.05;

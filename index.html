@@ -397,6 +397,7 @@ const IDIOMS={
 4:'树欲静而风不止，子欲养而亲不待|shù yù jìng ér fēng bù zhǐ, zǐ yù yǎng ér qīn bú dài|효도하려 할 때 부모는 기다려 주지 않는다;万事俱备，只欠东风|wànshì jù bèi, zhǐ qiàn dōngfēng|다 준비됐는데 결정적인 하나가 부족하다;冰冻三尺，非一日之寒|bīng dòng sān chǐ, fēi yí rì zhī hán|큰일은 하루아침에 생기지 않는다;无风不起浪|wú fēng bù qǐ làng|아니 땐 굴뚝에 연기 날까'
 };
 
+const PRON={"以米饭为主食": "以米饭维主食", "卖相不错": "卖象不错", "这家店的招牌菜不但卖相好，而且味道也不错。": "这家店的招牌菜不但卖象好，而且味道也不错。", "他每天晚上都醉醺醺地回家。": "他每天晚上都醉醺醺的回家。", "争分夺秒地复习": "争分夺秒的复习", "明天考试，我得争分夺秒地复习。": "明天考试，我得争分夺秒的复习。", "我要争分夺秒地准备HSK考试。": "我要争分夺秒的准备HSK考试。", "卖相": "卖象", "花有重开日，人无再少年": "花有虫开日，人无再绍年"};
 </script>
 <script>
 (function(){
@@ -489,6 +490,8 @@ function speak(text,opt){
   if(!S.sound||!('speechSynthesis' in window)){opt.end&&setTimeout(opt.end,300);return}
   try{
     speechSynthesis.cancel();
+    // 다음자 보정: 화면은 그대로, 소리만 같은 발음 글자로 (예: 争分夺秒地 → 的)
+    if(typeof PRON!=='undefined'){const k=String(text).trim();text=PRON[k]||PRON[k.replace(/[。！？!?，,]$/,'')]||text}
     const u=new SpeechSynthesisUtterance(text);
     u.lang=VOICE?VOICE.lang:'zh-CN';if(VOICE)u.voice=VOICE;
     u.rate=opt.rate||.85;u.pitch=1.05;
