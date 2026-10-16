@@ -55,7 +55,7 @@ chrome='''<script>
   function banner(){
     if(document.getElementById('gochrome'))return;
     var d=document.createElement('div');d.id='gochrome';
-    d.style.cssText='position:fixed;left:0;right:0;bottom:0;z-index:9999;padding:12px max(16px,env(safe-area-inset-right,0px)) calc(12px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));background:#2E3A63;color:#fff;font:600 15px/1.4 system-ui,sans-serif;display:flex;gap:8px;align-items:center;box-shadow:0 -6px 20px rgba(0,0,0,.2)';
+    d.style.cssText='position:fixed;left:0;right:0;bottom:0;z-index:9999;padding:12px max(16px,env(safe-area-inset-right,0px)) calc(12px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));background:#8B6CF0;color:#fff;font:600 15px/1.4 system-ui,sans-serif;display:flex;gap:8px;align-items:center;box-shadow:0 -6px 20px rgba(0,0,0,.2)';
     d.innerHTML='<span style="flex:1">'+(noChrome()?'이 게임은 <b>크롬</b>에 맞춰 만들었어요. 크롬을 설치하면 가장 잘 나와요.':'크롬에서 열면 소리와 화면이 가장 잘 나와요.')+'</span><button id="gcgo" style="border:0;border-radius:12px;padding:10px 14px;background:#DE5F57;color:#fff;font:800 15px system-ui,sans-serif;white-space:nowrap">크롬으로 열기</button><button id="gcx" aria-label="닫기" style="border:0;background:none;color:#fff;font-size:20px;padding:4px 6px">✕</button>';
     document.body.appendChild(d);
     document.getElementById('gcgo').onclick=function(){try{localStorage.removeItem(NO)}catch(e){}openChrome(true)};
@@ -70,7 +70,7 @@ def page(with_pwa):
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-<meta name="theme-color" content="#2E3A63">
+<meta name="theme-color" content="#8B6CF0">
 {title}
 {pwa if with_pwa else ''}
 <style>:root{{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}}body{{margin:0}}[hidden]{{display:none!important}}</style>
@@ -87,7 +87,7 @@ open('index.html','w',encoding='utf-8').write(page(False))          # 오프라�
 open('site/index.html','w',encoding='utf-8').write(page(True))      # GitHub Pages용
 open('site/manifest.webmanifest','w',encoding='utf-8').write(json.dumps({
  "name":"덩어리 툭! 고급회화","short_name":"툭! 고급회화","start_url":"./","scope":"./","display":"standalone",
- "orientation":"portrait","background_color":"#F6F3F0","theme_color":"#2E3A63","lang":"ko",
+ "orientation":"portrait","background_color":"#FFFBF8","theme_color":"#8B6CF0","lang":"ko",
  "icons":[{"src":"icons/icon-192.png","sizes":"192x192","type":"image/png","purpose":"any"},
           {"src":"icons/icon-512.png","sizes":"512x512","type":"image/png","purpose":"any"},
           {"src":"icons/icon-maskable-512.png","sizes":"512x512","type":"image/png","purpose":"maskable"}]},ensure_ascii=False,indent=1))
